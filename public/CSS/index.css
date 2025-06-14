@@ -18,15 +18,13 @@
     height: 100vh;
     margin: 0;
     
-    background-color: rgb(20, 20, 20);
-    color: rgb(255, 248, 248);
-
-    
     align-items: center;
     justify-content: center;
 
     padding-left: 120px;
     */
+    background-color: rgb(20, 20, 20);
+    /* color: rgb(255, 248, 248); */
     
 }
 
