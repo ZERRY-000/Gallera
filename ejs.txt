@@ -1,0 +1,18 @@
+response.render(`ชื่อ Template`, {
+    property: value,
+    property: value
+    ...
+})
+
+<%= property %>
+<%- property %>  //for html tag;
+
+<% if(condition){ %>
+<% }else{ %>
+<% } %>
+
+<% for(i = 0; i < 10; ++i){ %>
+    ...
+<% } %>
+
+<%- include("Filename") %>
