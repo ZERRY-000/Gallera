@@ -3,7 +3,7 @@ const mongoose = require(`mongoose`);
 
 
 //เชื่อมไปยัง mongoDB
-const DBurl = `mongodb://localhost:27017/textboxDB`;
+const DBurl = `mongodb://localhost:27017/galleryItemDB`;
 mongoose.connect(DBurl, {
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -11,14 +11,15 @@ mongoose.connect(DBurl, {
 
 
 //ออกแบบ Schema
-let textboxSchema = mongoose.Schema({
+let galleryItemSchema = mongoose.Schema({
+    image: String,
     date: String,
     topic: String,
     content: String
 })
 
 // สร้างโมเดล
-let TextBox = mongoose.model("textBoxes", textboxSchema);
+let GalleryItem = mongoose.model("Gallery_Items", galleryItemSchema);
 
 // ส่งโมเดลออก
-module.exports = TextBox;
+module.exports = GalleryItem;

@@ -24,8 +24,7 @@ input , textarea{
 }
 
 input[type="text"]{
-    width: 400px;
-    
+    width: 400px;    
 }
 input::placeholder{
     font-weight: 600;

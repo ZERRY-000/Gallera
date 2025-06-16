@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/addGalleryItem.css">
     <link rel="stylesheet" href="CSS/buttonBar.css">
-    <link rel="stylesheet" href="CSS/imageUpload.css">
 
 </head>
 <%- include("header.ejs") %>
@@ -18,12 +17,8 @@
     <div class="container-column">
         <form method="post" action="/sendingAddItem">
 
-            <div class="image-upload-section">
-                <div class="upload-area" id="uploadArea">
-                    <div>📷 ลากรูปมาวาง หรือคลิกเลือก</div>
-                    <input type="file" id="imageInput" name="images" accept="image/*" multiple>
-                </div>
-                <div class="image-preview" id="imagePreview"></div>
+            <div>
+                <input type="file" id="insertImage" name="image">
             </div>
 
             <div>
@@ -44,6 +39,5 @@
         </form>
     </div>
 
-     <script src="JS/imageUpload.js"></script>
 </body>
 </html>
