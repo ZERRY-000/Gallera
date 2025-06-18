@@ -25,12 +25,7 @@ This project is made from basic HTML to Basic Node.js.
   ![image](https://github.com/user-attachments/assets/77351eda-5451-402e-b894-bdb2cd4a7d66)<br><br>
 ### Add Page (basic HTML form)
   ![image](https://github.com/user-attachments/assets/b432b9da-9321-4ffc-a2b9-f9b98cd20db3)
-
-### Others
-
-![image](https://github.com/user-attachments/assets/5c2eb608-8c57-4297-8d7f-ece4a5b65bed)
-![image](https://github.com/user-attachments/assets/0907a791-dded-4ffa-a473-2c1a45671d98)
-
+  
 </div>
 
 
