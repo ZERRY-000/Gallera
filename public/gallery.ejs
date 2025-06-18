@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/buttonBar.css">
     <link rel="stylesheet" href="CSS/gallery.css">
+    <link rel="stylesheet" href="CSS/DeleteEditBtn.css">
     
 
 </head>
@@ -28,8 +29,8 @@
                     <p id="item-topic"><%= item.topic %></p>
 
                     <div class="item-button" style="align-self: self-end; padding-right: 50px">
-                        <button id="delete-<%= item._id %>">Delete</button>
-                        <button id="edit-<%= item._id %>">Edit</button>
+                        <button class="btn-delete" id="delete-<%= item._id %>">Delete</button>
+                        <button class="btn-edit" id="edit-<%= item._id %>">Edit</button>
                         <form id="edit-form-<%= item._id %>" action="/edit" method="POST">
                             <input type="hidden" name="edit_id" value="<%= item._id %>">
                         </form>
