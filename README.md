@@ -5,11 +5,16 @@ This is my first project following the **[*Full-Stack-Dev-Learning*](https://git
 Gallera is a full-stack web application that was built as part of my journey learning web development.
 This project is made from basic HTML to Basic Node.js.
 
+
 ## Technologies Used
 **Frontend:** HTML, CSS, JavaScript, EJS (Template Engine)
+
 **Backend:** Node.js, Express.js v5.1.0
+
 **Database:** MongoDB with Mongoose ODM v8.15.2
+
 **File Upload:** Multer v2.0.1
+
 **Development:** Nodemon v3.1.10
 
 ## Features
