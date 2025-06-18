@@ -19,7 +19,7 @@
         <form method="POST" action="/updateItem">
             <!-- <h1>Edit</h1> -->
             <div>
-                <input type="text" name="_id" value="<%- gallery_item._id %>">
+                <input type="hidden" name="_id" value="<%- gallery_item._id %>">
             </div>
             <div>
                 <img src="../galleryImages/<%- gallery_item.image %>" style="height:300px; width:300px; object-fit: contain;">
