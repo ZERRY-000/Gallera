@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/buttonBar.css">
     <link rel="stylesheet" href="CSS/gallery.css">
+    <link rel="stylesheet" href="CSS/galleryPage.css">
     
 
 </head>
@@ -16,13 +17,22 @@
 
 <body>
     <div class="template">
-        <div style="width: 500px; height: 500px; border: solid 1px lightblue;">
-            <img src="/galleryImages/<%= gallery_item.image %>" alt="<%= gallery_item.image %>" style="width: 100%; height: 100%; object-fit: contain;">
+        <div class="image-container">
+            <div style="width: 450px; height: 450px; ">
+                <img src="/galleryImages/<%= gallery_item.image %>" alt="<%= gallery_item.image %>" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div id="item-topic"><%= gallery_item.topic%></div>
+            
         </div>
-        <div><%= gallery_item.date%></div>
-        <div><%= gallery_item.topic%></div>
-        <div><%= gallery_item.content%></div>
-        <!-- <div id="update-button"></div> -->
+
+        <div class="text-container">
+            <div id="item-date"><%= gallery_item.date%></div>
+            <div id="item-content"><%= gallery_item.content%></div>
+            <div class="item-button" style="align-self: center;">
+                <button id="delete-<%= gallery_item._id %>">Delete</button>
+                <button id="edit-<%= gallery_item._id %>">Edit</button>
+            </div>
+        </div>
 
     </div>
 </body>

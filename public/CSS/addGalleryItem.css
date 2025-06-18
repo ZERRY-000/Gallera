@@ -4,7 +4,9 @@
     --placeholder_color: rgb(142, 135, 135);
     --background_textbox_color: rgb(33, 33, 33);
 }
-
+/* * {
+    border: solid 1px lightblue;
+} */
 body {
     /* padding-left: 130px;
     padding-top: 10px; */

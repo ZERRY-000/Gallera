@@ -1,0 +1,36 @@
+/* * {
+    border: solid 1px lightblue;
+} */
+
+
+.template {
+    margin: 20px;
+}
+.image-container {
+
+    display: flex;
+    flex-direction: column;
+
+    /* justify-content: center; */
+    align-items: center;
+
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 20%;
+    padding-right: 20%;
+
+}
+
+#item-date {
+    align-self: left;
+    font-weight: 200;
+    font-size: 8px;
+}
+#item-topic {
+    font-weight: 600;
+    font-size: 18px;
+}
