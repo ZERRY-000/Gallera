@@ -7,30 +7,69 @@ const { readdirSync } = require("fs");
 const GalleryItem = require("../model/galleryItem");
 const { resolve6 } = require("dns");
 
+
+//file upload
+const multer = require(`multer`);
+const storage = multer.diskStorage({
+    destination:(request, file, callback) => {
+        callback(null, `./public/galleryImages`);
+    },
+    filename:(request, file, callback) => {
+        callback(null, Date.now()+".jpg");
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
 router.get(`/`, (request, response) => {
-
-    response.render(`index.ejs`)
-
-    // response.sendFile(path.join(__dirname,`index.ejs`), (err) => {
-    //     if(err) console.log(err);
-    // })
+    response.render(`index.ejs`);
 })
 
 router.get(`/gallery`, (request, response) => {
-    response.render(`gallery.ejs`)
+    GalleryItem.find().exec()
+    .then(document => {
+        response.render(`gallery.ejs`,{galleryItems:document});
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    
 })
 
 router.get(`/addGalleryItem`, (request, response) => {
-    response.render(`addGalleryItem.ejs`)
+    response.render(`addGalleryItem.ejs`);
 })
 
-router.post(`/sendingAddItem`, (request, response) => {
+router.get(`/:id`, (request, response) => {
+    console.log(request.params.id);
+
+    GalleryItem.findOne({_id:request.params.id}).exec()
+        .then(document => {
+            console.log(document);
+            response.render(`galleryPage.ejs`,{gallery_item:document});
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
     
-    console.log(request.body);
+})
+
+
+
+
+router.post(`/sendingAddItem`, upload.single(`image`), (request, response) => {
+    
+    
+    console.log(request.file);
+    console.log(`------------------`);
     let formattedDate = request.body.datetime.replace('T', ' ');
 
+
     let document = new GalleryItem({
-        image: request.body.image,
+        image: request.file.filename,
         date: formattedDate,
         topic: request.body.topic,
         content: request.body.content

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/buttonBar.css">
+    <link rel="stylesheet" href="CSS/gallery.css">
     
 
 </head>
@@ -14,7 +15,27 @@
 <script src="JS/header.js"></script>   
 
 <body>
-<%- include("buttonBar.ejs") %>
-<script src="JS/buttonBar.js"></script>  
+    <%- include("buttonBar.ejs") %>
+    <script src="JS/buttonBar.js"></script> 
+    <div id="galleryItemContainer">
+    <% galleryItems.forEach(function(item) { %>
+
+        <div class="item-frame" id="<%= item._id %>">
+            <!-- <div id="<%= item._id %>"></div> -->
+            <img src="/galleryImages/<%= item.image %>" alt="<%= item.image %>" width="20%", height="20%"></img>
+            <p>Date: <%= item.date %></p>
+            <p>Topic: <%= item.topic %></p>
+            <p>Content: <%= item.content %></p>
+        </div>
+        <script>
+            document.getElementById(`<%= item._id %>`).addEventListener(`click`, () =>{
+                window.location.href = `/<%= item._id %>`;
+            })
+            // console.log(`<%= item._id %>`);
+        </script>
+    
+    <% }); %>
+    </div>
+
 </body>
 </html>

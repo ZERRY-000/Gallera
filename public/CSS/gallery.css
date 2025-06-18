@@ -1,0 +1,23 @@
+:root{
+    --frame_color: rgb(223, 223, 223);
+    --font_color: rgb(255, 248, 248);
+    --placeholder_color: rgb(142, 135, 135);
+    --background_textbox_color: rgb(33, 33, 33);
+}
+
+body {
+    padding-left: 120px;
+    
+    color: var(--font_color);
+
+    /* border: solid 1px lightblue; */
+}
+
+#galleryItemContainer{
+    margin: 10px;
+}
+
+.item-frame {
+    margin-top: 20px;
+    border: solid 2px lightblue;
+}
