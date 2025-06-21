@@ -8,7 +8,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import router from './routes/route.js';
-// const router = require(`./routes/route`);
 
 app.set(`views`, path.join(__dirname,`views`));
 app.set(`view engine`,`ejs`);
@@ -23,4 +22,5 @@ app.use(router);
 
 app.listen(8080, ()=>{
     console.log(`start server in port 8080`);
+    console.log(import.meta.url);
 })

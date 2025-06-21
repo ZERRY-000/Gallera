@@ -1,88 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallera</title>
-    <link rel="stylesheet" href="CSS/index.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/buttonBar.css">
-    <link rel="stylesheet" href="CSS/gallery.css">
-    <link rel="stylesheet" href="CSS/DeleteEditBtn.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallera</title>
+  <link rel="stylesheet" href="/CSS/index.css">
+  <link rel="stylesheet" href="/CSS/header.css">
+  <link rel="stylesheet" href="/CSS/buttonBar.css">
+  <link rel="stylesheet" href="/CSS/gallery.css">
+  <link rel="stylesheet" href="/CSS/DeleteEditBtn.css">
+
 
 </head>
-<%- include("header.ejs") %>
-<script src="JS/header.js"></script>   
+<%- include("../navbar/header.ejs") %>
+  <script src="JS/header.js"></script>
 
-<body>
-    <%- include("buttonBar.ejs") %>
-    <script src="JS/buttonBar.js"></script> 
-    <div id="galleryItemContainer">
+  <body>
+    <%- include("../navbar/buttonBar.ejs") %>
+      <script src="JS/buttonBar.js"></script>
+      <div id="galleryItemContainer">
         <div class="gallery-grid">
-            <% galleryItems.forEach(function(item) { %>
+          <% galleryItems.forEach(function(item) { %>
 
-                <div class="item-frame" id="<%= item._id %>">
-                    <!-- <div id="<%= item._id %>"></div> -->
-                    <img id="item-image" src="/galleryImages/<%= item.image %>" alt="<%= item.image %>" style=" object-fit: contain;"></img>
-                    <p id="item-date"><%= item.date %></p>
-                    <p id="item-topic"><%= item.topic %></p>
+            <div class="item-frame" id="<%= item._id %>">
+              <!-- <div id="<%= item._id %>"></div> -->
+              <img id="item-image" src="/galleryImages/<%= item.image %>" alt="<%= item.image %>"
+                style=" object-fit: contain;"></img>
+              <p id="item-date">
+                <%= item.date %>
+              </p>
+              <p id="item-topic">
+                <%= item.topic %>
+              </p>
 
-                    <div class="item-button" style="align-self: self-end; padding-right: 50px">
-                        <button class="btn-delete" id="delete-<%= item._id %>">Delete</button>
-                        <button class="btn-edit" id="edit-<%= item._id %>">Edit</button>
-                        <form id="edit-form-<%= item._id %>" action="/edit" method="POST">
-                            <input type="hidden" name="edit_id" value="<%= item._id %>">
-                        </form>
-                        
-                    </div>
-                    <!-- <p id="item-content"><%= item.content %></p> -->
-                </div>
-                <!-- item frame click event -->
-                <script>
-                    (() => {
-                        const element = document.getElementById(`<%= item._id %>`);
-                        element.addEventListener(`click`, () =>{
-                            window.location.href = `/galleryPage-<%= item._id %>`;
-                        });
-                        const randomRotation = (Math.random() - 0.5) * 4;
-                        element.style.setProperty('--random-rotation', randomRotation + 'deg');
-                    })();
-                </script>
-                <!-- delete button and edit button click event -->
-                <script>
-                    (() => {
-                        const _id = `<%= item._id %>`;
-                        const deleteButton = document.getElementById(`delete-<%= item._id %>`);
-                        const editButton  = document.getElementById(`edit-<%= item._id %>`);
-                        const editForm = document.getElementById(`edit-form-<%= item._id %>`);
-                        console.log(editForm.innerHTML);
+              <div class="item-button" style="align-self: self-end; padding-right: 50px">
+                <button class="btn-delete" id="delete-<%= item._id %>">Delete</button>
+                <button class="btn-edit" id="edit-<%= item._id %>">Edit</button>
+                <form id="edit-form-<%= item._id %>" action="/edit" method="POST">
+                  <input type="hidden" name="edit_id" value="<%= item._id %>">
+                </form>
 
-                        const viewForm = document.getElementById(`view-form-<%= item._id %>`);
+              </div>
+              <!-- <p id="item-content"><%= item.content %></p> -->
+            </div>
+            <!-- item frame click event -->
+            <script>
+              (() => {
+                const element = document.getElementById(`<%= item._id %>`);
+                element.addEventListener(`click`, () => {
+                  window.location.href = `/galleryPage/<%= item._id %>`;
+                });
+                const randomRotation = (Math.random() - 0.5) * 4;
+                element.style.setProperty('--random-rotation', randomRotation + 'deg');
+              })();
+            </script>
+            <!-- delete button and edit button click event -->
+            <script>
+              (() => {
+                const _id = `<%= item._id %>`;
+                const deleteButton = document.getElementById(`delete-<%= item._id %>`);
+                const editButton = document.getElementById(`edit-<%= item._id %>`);
+                const editForm = document.getElementById(`edit-form-<%= item._id %>`);
+                console.log(editForm.innerHTML);
+
+                const viewForm = document.getElementById(`view-form-<%= item._id %>`);
 
 
-                        let deleteBool = false;
-                        deleteButton.addEventListener(`click`, (event) => {
-                            event.stopPropagation();
-                            console.log(`delete_click ${_id}, ${deleteBool}`);
-                            if(!deleteBool){
-                                deleteButton.innerText = `!! Confirm Delete`;
-                                deleteBool = true;
-                            }
-                            else {
-                                window.location.href = `/delete/<%= item._id %>`;
-                            }
-                        })
-                        editButton.addEventListener(`click`, (event) => {
-                            event.stopPropagation();
-                            editForm.submit();
-                        })
-                    })();
-                </script>
+                let deleteBool = false;
+                deleteButton.addEventListener(`click`, (event) => {
+                  event.stopPropagation();
+                  console.log(`delete_click ${_id}, ${deleteBool}`);
+                  if (!deleteBool) {
+                    deleteButton.innerText = `!! Confirm Delete`;
+                    deleteBool = true;
+                  }
+                  else {
+                    window.location.href = `/delete/<%= item._id %>`;
+                  }
+                })
+                editButton.addEventListener(`click`, (event) => {
+                  event.stopPropagation();
+                  editForm.submit();
+                })
+              })();
+            </script>
             <% }); %>
 
         </div>
-    </div>
+      </div>
 
-</body>
+  </body>
+
 </html>

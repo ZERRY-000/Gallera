@@ -1,139 +1,23 @@
 import express from 'express';
 import path from 'path';
-import multer from 'multer';
+import { upload } from '../controllers/multer_upload.js';
 import fs, { readdirSync } from 'fs';
 import { GalleryItem } from '../model/galleryItem.js';
 import { resolve6 } from 'dns';
+import * as galleryController from '../controllers/galleryController.js';
 
 const router = express.Router();
 
+router.get(`/`, (request, response) => response.render("index.ejs"));
+router.get('/favicon.ico', (request, response) => response.status(204).end());
 
-//file upload
-const storage = multer.diskStorage({
-    destination:(request, file, callback) => {
-        callback(null, `./public/galleryImages`);
-    },
-    filename:(request, file, callback) => {
-        callback(null, Date.now()+".jpg");
-    }
-})
-
-const upload = multer({
-    storage: storage
-})
-
-router.get(`/`, (request, response) => {
-    response.render("index.ejs");
-})
-
-router.get(`/gallery`, (request, response) => {
-    GalleryItem.find().exec()
-    .then(document => {
-        response.render(`gallery.ejs`,{galleryItems:document});
-    })
-    .catch(err => {
-        console.log(err);
-    })
-    
-})
-// router.get(`/gallery`, galleryController.showGalleryPage);
-
-router.get('/favicon.ico', (req, res) => res.status(204).end());
-
-router.get(`/addGalleryItem`, (request, response) => {
-    response.render(`addGalleryItem.ejs`);
-})
-
-router.get(`/galleryPage-:id`, (request, response) => {
-
-    GalleryItem.findOne({_id:request.params.id}).exec()
-        .then(document => {
-            response.render(`galleryPage.ejs`,{gallery_item:document});
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
-
-router.get(`/delete/:id`,(request, response) => {
-    GalleryItem.findOne({_id:request.params.id}).exec()
-    .then(document => {
-        const imageName = document.image;
-        const imagePath = path.join(__dirname, `galleryImages`, imageName);
-        console.log(imagePath);
-        fs.unlink(imagePath, err => {
-            if(err) console.log(err);
-        })
-    })
-    .catch(err => {
-        console.log(err);
-    })
-
-    GalleryItem.findByIdAndDelete(request.params.id, {useFindAndModify:false}).exec()
-        .then(() =>{
-            console.log(request.params.id);
-            
-            response.redirect(`/gallery`);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
-})
-
-router.post(`/sendingAddItem`, upload.single(`image`), (request, response) => {
-    
-    
-    // console.log(request.file);
-    // console.log(`------------------`);
-    let formattedDate = request.body.datetime.replace('T', ' ');
-
-
-    let document = new GalleryItem({
-        image: request.file.filename,
-        date: formattedDate,
-        topic: request.body.topic,
-        content: request.body.content
-    })
-
-    document.save()
-        .then(() => {
-            response.redirect(`/gallery`)
-        })
-        .catch((err) => {
-            console.log(err);
-            response.status(500).send('Error saving document');
-        });
-
-})
-
-router.post(`/edit`, (request, response) => {
-    GalleryItem.findOne({_id:request.body.edit_id}).exec()
-        .then(document => {
-            let formattedDate = document.date.replace(' ', 'T');
-            document.date = formattedDate;
-            response.render(`editItem.ejs`,{gallery_item:document});
-        })
-        .catch(err => {
-            console.log(err);
-        })
-})
-
-router.post(`/updateItem`,(request, response) => {
-    
-    let formattedDate = request.body.datetime.replace('T', ' ');
-    const data = {
-        datetime: formattedDate,
-        topic: request.body.topic,
-        content: request.body.content
-    };
-    GalleryItem.findByIdAndUpdate(request.body._id, data).exec()
-        .then(() => {
-            response.redirect(`/gallery`);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})
+//gallery
+router.get(`/gallery`, galleryController.showGallery);
+router.get(`/addGalleryItem`, (request, response) => response.render(`gallery/addGalleryItem.ejs`));
+router.post(`/sendingAddItem`, upload.single(`image`), galleryController.addItem);
+router.get(`/galleryPage/:id`, galleryController.showPage);
+router.get(`/delete/:id`, galleryController.deleteItem);
+router.post(`/edit`, galleryController.editItem);
+router.post(`/updateItem`, galleryController.updateItem);
 
 export default router;
