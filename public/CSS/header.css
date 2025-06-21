@@ -1,48 +1,48 @@
 header {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 
-    background-color: rgb(14, 12, 12);
-    border-right: dashed 2px rgb(255, 196, 206);
-    
-    color: rgb(14, 12, 12) ;
+  background-color: rgb(14, 12, 12);
+  border-right: dashed 2px rgb(255, 196, 206);
 
-    width: 120px;
-    height: 100vh;
+  color: rgb(14, 12, 12);
 
-    font-weight: 600;
-    font-size: 16px;
+  width: 120px;
+  height: 100vh;
 
-    align-items: center;
-    /* justify-content: center; */
+  font-weight: 600;
+  font-size: 16px;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
+  align-items: center;
+  /* justify-content: center; */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
-.header-button{
-    
+.header-button {
 
-    border-radius: 5px;
 
-    padding: 10px;
-    margin-top: 16px;
-    width: 70%;
-    color:rgb(255, 248, 248);
+  border-radius: 5px;
 
-    text-align: right;
+  padding: 10px;
+  margin-top: 16px;
+  width: 70%;
+  color: rgb(255, 248, 248);
 
-    transition-property: background-color;
-    transition-duration: .5s;
-    
-    
+  text-align: right;
+
+  transition-property: background-color;
+  transition-duration: .5s;
+
+
 }
 
 
-.header-button:hover{
-    background-color: rgb(25, 25, 25);
-    color: rgb(255, 196, 206);
+.header-button:hover {
+  background-color: rgb(25, 25, 25);
+  color: rgb(255, 196, 206);
 }

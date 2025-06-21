@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallera</title>
-    <link rel="stylesheet" href="CSS/index.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/addGalleryItem.css">
-    <link rel="stylesheet" href="CSS/buttonBar.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallera</title>
+  <link rel="stylesheet" href="CSS/index.css">
+  <link rel="stylesheet" href="CSS/header.css">
+  <link rel="stylesheet" href="CSS/addGalleryItem.css">
+  <link rel="stylesheet" href="CSS/buttonBar.css">
 
 </head>
 <%- include("../navbar/header.ejs") %>
-<script src="JS/header.js"></script>
-<body>
+  <script src="JS/header.js"></script>
+
+  <body>
 
     <div class="container-column">
-        
-        <form method="POST" action="/updateItem">
-            <!-- <h1>Edit</h1> -->
-            <div>
-                <input type="hidden" name="_id" value="<%- gallery_item._id %>">
-            </div>
-            <div>
-                <img src="../galleryImages/<%- gallery_item.image %>" style="height:300px; width:300px; object-fit: contain;">
-            </div>
-            <div>
-                <label for="Date" style="font-weight: 600;">Date:</label>
-                <input type="datetime-local" id="datetime" name="datetime" value="<%- gallery_item.date %>" style="font-weight: 600;">
-            </div>
-            <div>
-                <!-- <label for="Topic" style="font-weight: 600;">Topic:</label> -->
-                <input  type="text" style="font-weight: 600;" name="topic" placeholder="Topic" value="<%- gallery_item.topic %>" >
-            </div>
-            <div>
-                <label for="Content" style="font-weight: 600;"></label>
-                <textarea style="font-weight: 400; width:400px; height: 80px;" name="content" placeholder="Write a story."><%- gallery_item.content %></textarea>
-            </div>
-            <button type="submit" class="button-01 submit" style="font-weight: 600;">
-                Update
-            </button>
-        </form>
+
+      <form method="POST" action="/updateItem">
+        <!-- <h1>Edit</h1> -->
+        <div>
+          <input type="hidden" name="_id" value="<%- gallery_item._id %>">
+        </div>
+        <div>
+          <img src="../galleryImages/<%- gallery_item.image %>" style="height:300px; width:300px; object-fit: contain;">
+        </div>
+        <div>
+          <label for="Date" style="font-weight: 600;">Date:</label>
+          <input type="datetime-local" id="datetime" name="datetime" value="<%- gallery_item.date %>"
+            style="font-weight: 600;">
+        </div>
+        <div>
+          <!-- <label for="Topic" style="font-weight: 600;">Topic:</label> -->
+          <input type="text" style="font-weight: 600;" name="topic" placeholder="Topic"
+            value="<%- gallery_item.topic %>">
+        </div>
+        <div>
+          <label for="Content" style="font-weight: 600;"></label>
+          <textarea style="font-weight: 400; width:400px; height: 80px;" name="content"
+            placeholder="Write a story."><%- gallery_item.content %></textarea>
+        </div>
+        <button type="submit" class="button-01 submit" style="font-weight: 600;">
+          Update
+        </button>
+      </form>
     </div>
-</body>
+  </body>
+
 </html>

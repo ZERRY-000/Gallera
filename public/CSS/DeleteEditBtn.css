@@ -1,51 +1,53 @@
 .btn-delete {
 
-    border: none;
-    border-radius: 5px;
+  border: none;
+  border-radius: 5px;
 
-    background-color: rgb(223, 81, 107);
-    color:white;
+  background-color: rgb(223, 81, 107);
+  color: white;
 
-    font-weight: 600;
+  font-weight: 600;
 
-    width: auto;
-    height: 32px;
-    
-    margin-right: 10px;
+  width: auto;
+  height: 32px;
 
-    
+  margin-right: 10px;
 
-    transform: scale(1);
-    transition: background-color, transform;
-    transition-duration: .4s;
+
+
+  transform: scale(1);
+  transition: background-color, transform;
+  transition-duration: .4s;
 }
+
 .btn-delete:hover {
-    background-color: red;
-    color: white;
-    transform: scale(1.1);
+  background-color: red;
+  color: white;
+  transform: scale(1.1);
 }
+
 .btn-edit {
 
-    border: none;
-    border-radius: 5px;
+  border: none;
+  border-radius: 5px;
 
-    background-color: rgb(223, 81, 216);
-    color: white;
+  background-color: rgb(223, 81, 216);
+  color: white;
 
-    font-weight: 600;
+  font-weight: 600;
 
-    width: auto;
-    height: 32px;
-    
-    margin-right: 20px;
+  width: auto;
+  height: 32px;
 
-    transform: scale(1);
-    transition: background-color, transform;
-    transition-duration: .4s;
+  margin-right: 20px;
+
+  transform: scale(1);
+  transition: background-color, transform;
+  transition-duration: .4s;
 }
 
 .btn-edit:hover {
-    background-color: rgb(95, 32, 91);
-    color: white;
-    transform: scale(1.1);
+  background-color: rgb(95, 32, 91);
+  color: white;
+  transform: scale(1.1);
 }
