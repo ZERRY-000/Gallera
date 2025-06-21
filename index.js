@@ -1,9 +1,16 @@
-const express = require(`express`);
+import express from 'express';
 const app = express();
-const path = require(`path`);
-const router = require(`./public/route`);
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-app.set(`views`, path.join(__dirname,`public`));
+// สร้าง __filename และ __dirname ใน ES Module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import router from './routes/route.js';
+// const router = require(`./routes/route`);
+
+app.set(`views`, path.join(__dirname,`views`));
 app.set(`view engine`,`ejs`);
 
 app.use(express.urlencoded({extended:false}));

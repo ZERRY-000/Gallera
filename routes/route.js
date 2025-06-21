@@ -1,17 +1,14 @@
-const express = require(`express`);
-const path = require(`path`);
+import express from 'express';
+import path from 'path';
+import multer from 'multer';
+import fs, { readdirSync } from 'fs';
+import { GalleryItem } from '../model/galleryItem.js';
+import { resolve6 } from 'dns';
 
 const router = express.Router();
 
-const fs = require(`fs`);
-
-const { readdirSync } = require("fs");
-const GalleryItem = require("../model/galleryItem");
-const { resolve6 } = require("dns");
-
 
 //file upload
-const multer = require(`multer`);
 const storage = multer.diskStorage({
     destination:(request, file, callback) => {
         callback(null, `./public/galleryImages`);
@@ -26,7 +23,7 @@ const upload = multer({
 })
 
 router.get(`/`, (request, response) => {
-    response.render(`index.ejs`);
+    response.render("index.ejs");
 })
 
 router.get(`/gallery`, (request, response) => {
@@ -39,6 +36,7 @@ router.get(`/gallery`, (request, response) => {
     })
     
 })
+// router.get(`/gallery`, galleryController.showGalleryPage);
 
 router.get('/favicon.ico', (req, res) => res.status(204).end());
 
@@ -138,4 +136,4 @@ router.post(`/updateItem`,(request, response) => {
         })
 })
 
-module.exports = router;
+export default router;

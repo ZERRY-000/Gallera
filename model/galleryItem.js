@@ -1,5 +1,5 @@
 // ใช้งาน mongoose
-const mongoose = require(`mongoose`);
+import mongoose from 'mongoose';
 
 
 //เชื่อมไปยัง mongoDB
@@ -19,7 +19,8 @@ let galleryItemSchema = mongoose.Schema({
 })
 
 // สร้างโมเดล
-let GalleryItem = mongoose.model("Gallery_Items", galleryItemSchema);
+const GalleryItem = mongoose.model('Gallery_Items', galleryItemSchema);
 
 // ส่งโมเดลออก
-module.exports = GalleryItem;
+
+export { GalleryItem };
